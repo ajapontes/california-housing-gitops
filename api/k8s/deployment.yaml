@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-housing-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-housing
+  template:
+    metadata:
+      labels:
+        app: api-housing
+    spec:
+      containers:
+        - name: api-housing
+          image: api-california-housing:1.0
+          imagePullPolicy: Never  # Muy importante para usar imágenes locales con Minikube
+          ports:
+            - containerPort: 5000
